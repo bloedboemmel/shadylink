@@ -1,5 +1,6 @@
 
-from flask import Flask, render_template, request, abort, redirect, url_for
+from tkinter import E
+from flask import Flask, render_template, request, abort, redirect
 import random
 import urllib
 
@@ -8,14 +9,9 @@ import sketchify
 import sketchy_data
 import validate
 
-import google
-
 app = Flask('heapslegit')
 
-try:
-    db = database.URLStoreModel()
-except google.cloud.exceptions.TooManyRequests:
-    db = None
+db = database.URLStoreModel()
 
 
 @app.route('/')
@@ -73,11 +69,13 @@ def sketchify_url():
     return "{proto}{domain}/{path}".format(proto=random.choice(("http://", "")), domain=random.choice(sketchy_data.DOMAINS), path=sketchy_url)
 
 
+
+
 @app.route('/<sketchy_extension>', methods=["GET"])
 def redirect_to_sketchy_url(sketchy_extension):
 
     # Unencode the URL.
-    sketchy_extension = urllib.unquote(sketchy_extension)
+    sketchy_extension = urllib.parse.unquote(sketchy_extension)
 
     # Get the long url for this short url.
     long_url = db.get_long_url(sketchy_extension)
@@ -85,8 +83,10 @@ def redirect_to_sketchy_url(sketchy_extension):
                                                       long_url=long_url)))
     if long_url is None:
         return abort(404)
-
-    return redirect(url_for(long_url, _external=True))
+    # add http:// to the url if it doesn't have it
+    if not long_url.startswith("http://") and not long_url.startswith("https://"):
+        long_url = "http://" + long_url
+    return redirect(long_url)
 
 
 @app.errorhandler(404)

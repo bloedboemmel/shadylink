@@ -1,6 +1,6 @@
 
-import urlparse
-import httplib
+from urllib.parse import urlparse
+import http.client
 
 class URLValidator():
     """Decides whether or not a URL is welcome as part of this 150% legit service."""
@@ -15,7 +15,8 @@ class URLValidator():
         if not (url.startswith("http://") or url.startswith("https://")):
             url = "http://" + url
         self.url = url
-        self.url_parts = urlparse.urlparse(self.url)
+        self.url_parts = urlparse(self.url)
+        urlparse
         print(url)
         print(self.url_parts)
         self.protocol = self.url_parts.scheme
@@ -49,7 +50,7 @@ class URLValidator():
         Does a DNS lookup on the domain part of the URL to check that it resolves
         """
         try:
-            httplib.HTTPConnection(self.domain).request("GET", "/")
+            http.client.HTTPConnection(self.domain).request("GET", "/")
             return True
         except gaierror:
             return False
