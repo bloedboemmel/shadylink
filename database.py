@@ -37,7 +37,7 @@ class URLStoreModel():
             self.db.execute("INSERT INTO urls (long_url, sketchy_url) VALUES (?, ?)", (long_url, sketchy_url))
             self.db.commit()
     
-            print("Setting " + long_url + " -> " + sketchy_url)
+            #print("Setting " + long_url + " -> " + sketchy_url)
     
         def get_long_url(self, sketchy_url):
     
@@ -46,7 +46,7 @@ class URLStoreModel():
     
             # None if we don't have this URL already
             if not result:
-                print("Getting: " + sketchy_url + " -> " + str(result))
+                #print("Getting: " + sketchy_url + " -> " + str(result))
                 return None
     
             long_url = result[0]
@@ -57,9 +57,9 @@ class URLStoreModel():
             cursor = self.db.execute("SELECT sketchy_url FROM urls WHERE long_url = ?", (long_url,))
             result = cursor.fetchone()
     
-            print(result)
+            #print(result)
             if not result:
-                print("Getting: " + long_url + " -> None")
+                #print("Getting: " + long_url + " -> None")
                 return None
     
             sketchy_url = result[0]

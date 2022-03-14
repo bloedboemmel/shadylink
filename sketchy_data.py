@@ -11,28 +11,7 @@ LONG_RANDOM_STIRNG_CHANCE = 0.3
 # This is good for a million URLs, but not ten million.
 MAX_ANTI_COLLISION_NUMBER = 1000
 
-DOMAINS = ("verylegitlink.appspot.com",
-           "verylegit.link",
-           "secure.verylegit.link",
-           "webhost000.verylegit.link",
-           "very.verylegit.link",
-           "not.verylegit.link",
-           "ftp.verylegit.link",
-           "win2003.verylegit.link",
-           "irc.verylegit.link",
-           "ctf.verylegit.link",
-           "w61.verylegit.link",
-           "666.verylegit.link",
-           "1337.verylegit.link",
-           "paypal.verylegit.link",
-           "facebook.verylegit.link",
-           "extremely.absolutely.completely.verylegit.link",
-           "this.is.a.verylegit.link",
-           "hey.look.a.verylegit.link",
-           "click.on.this.verylegit.link",
-           "win.a.free.ipad.verylegit.link",
-           "click.here.to.get.ripped.in.three.weeks.verylegit.link"
-          )
+DOMAINS = ("short.jakob-jung.com", "short.jakob-jung.com")
 SAMPLE_LONG_URLS = ("google.com", "facebook.com", "i.imgur.com/OpYDgt3.gif")
 
 SCARY_WORDS = (
@@ -62,7 +41,9 @@ SCARY_WORDS = (
     "paypal",
     "cryptolocker",
     "bitcoin",
+    "bitcoincash",
     "hack",
+    "hacktool",
     "pcmonitor",
     "speedupurpc",
     "java0day",
@@ -80,6 +61,7 @@ SCARY_WORDS = (
     "creditcard",
     "email",
     "login",
+    "sex",
     "torrent",
     "warez",
     "cracked",
@@ -96,7 +78,8 @@ SCARY_WORDS = (
     "test",
     "server1",
     "server1337",
-    "private-key"
+    "private-key",
+    "porn"
 )
 
 FILETYPES = (

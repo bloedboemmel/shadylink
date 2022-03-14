@@ -1,5 +1,4 @@
 
-from tkinter import E
 from flask import Flask, render_template, request, abort, redirect
 import random
 import urllib
@@ -22,7 +21,7 @@ def index():
     sample_long_url = random.choice(sketchy_data.SAMPLE_LONG_URLS)
     sample_sketchy_extension = db.get_sketchy_url(sample_long_url)
 
-    sample_sketchy_url = "verylegit.link/" + sample_sketchy_extension
+    sample_sketchy_url = "short.jakob-jung.com/" + sample_sketchy_extension
     try:
         referrer = request.referrer
     except AttributeError:
@@ -79,8 +78,7 @@ def redirect_to_sketchy_url(sketchy_extension):
 
     # Get the long url for this short url.
     long_url = db.get_long_url(sketchy_extension)
-    print(("{sketchy_extension} -> {long_url}".format(sketchy_extension=sketchy_extension,
-                                                      long_url=long_url)))
+    #print(("{sketchy_extension} -> {long_url}".format(sketchy_extension=sketchy_extension,long_url=long_url)))
     if long_url is None:
         return abort(404)
     # add http:// to the url if it doesn't have it
@@ -100,4 +98,4 @@ def quota_exceeded(e):
     return render_template("429.html"), 429
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080)

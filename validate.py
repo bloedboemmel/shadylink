@@ -1,6 +1,7 @@
 
 from urllib.parse import urlparse
 import http.client
+import socket
 
 class URLValidator():
     """Decides whether or not a URL is welcome as part of this 150% legit service."""
@@ -52,7 +53,7 @@ class URLValidator():
         try:
             http.client.HTTPConnection(self.domain).request("GET", "/")
             return True
-        except gaierror:
+        except socket.gaierror:
             return False
 
     def check_external(self):
